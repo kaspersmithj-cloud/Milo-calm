@@ -3,64 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#285C4D" />
-  <title>Milo Calm 90</title>
+  <meta name="theme-color" content="#10251F" />
+  <title>Milo Trainer Pro</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
+  <div id="toast"></div>
+
+  <header class="app-top">
     <div>
-      <p class="eyebrow">Milo Calm 90</p>
-      <h1>Training Tracker</h1>
+      <p class="eyebrow">Milo Trainer Pro</p>
+      <h1 id="greeting">Good training day</h1>
     </div>
-    <button id="installBtn" class="secondary hidden">Install</button>
+    <button id="installBtn" class="icon-btn hidden">＋</button>
   </header>
 
   <main>
-    <section class="card hero">
-      <div>
-        <p id="phase" class="pill"></p>
-        <h2 id="dayTitle"></h2>
+    <section class="hero-card">
+      <div class="hero-left">
+        <span id="phase" class="phase-pill"></span>
+        <h2 id="dayTitle">Day 1</h2>
         <p id="target"></p>
+        <div class="hero-actions">
+          <button id="startSession">▶ Start Session</button>
+          <button id="repeatDay" class="secondary">Repeat Day</button>
+        </div>
       </div>
-      <div class="ring">
+      <div class="progress-orb">
         <span id="todayPercent">0%</span>
-        <small>done</small>
+        <small>today</small>
       </div>
     </section>
 
-    <section class="stats">
-      <div class="stat"><strong id="streak">0</strong><span>day streak</span></div>
-      <div class="stat"><strong id="overall">0%</strong><span>overall</span></div>
-      <div class="stat"><strong id="calmScore">—</strong><span>calm score</span></div>
+    <section class="metric-row">
+      <article><strong id="streak">0</strong><span>Streak</span></article>
+      <article><strong id="overall">0%</strong><span>Total</span></article>
+      <article><strong id="calmScore">—</strong><span>Calm</span></article>
+      <article><strong id="badgeCount">0</strong><span>Badges</span></article>
+    </section>
+
+    <section id="coachCard" class="card coach">
+      <h3>AI-style coach</h3>
+      <p id="coachAdvice">Complete today’s session and log any triggers. I’ll tell you whether to progress or repeat.</p>
     </section>
 
     <section class="card">
-      <div class="section-title">
-        <h3>Today’s high-end guide</h3>
-        <button id="jumpToday" class="secondary">Today</button>
+      <div class="section-head">
+        <h3>Today’s Guide</h3>
+        <button id="jumpToday" class="secondary small">Next open day</button>
       </div>
       <div id="sessions"></div>
     </section>
 
     <section class="card">
-      <h3>Success criteria</h3>
-      <ul id="criteria"></ul>
-    </section>
-
-    <section class="card">
-      <h3>Trigger tracker</h3>
+      <h3>Live trigger log</h3>
+      <div class="quick-grid">
+        <button data-trigger="Doorbell / knock">🔔 Doorbell</button>
+        <button data-trigger="Visitor arriving">👋 Visitor</button>
+        <button data-trigger="Parking the car">🚗 Parking</button>
+        <button data-trigger="Other dog">🐕 Dog</button>
+      </div>
       <div class="grid">
-        <label>Trigger
-          <select id="triggerType">
-            <option>Doorbell / knock</option>
-            <option>Visitor arriving</option>
-            <option>Parking the car</option>
-            <option>Other dog</option>
-            <option>Other</option>
-          </select>
-        </label>
         <label>Barking intensity
           <select id="intensity">
             <option value="0">0 - silent</option>
@@ -71,50 +75,86 @@
             <option value="5">5 - full meltdown</option>
           </select>
         </label>
+        <label>Trigger
+          <select id="triggerType">
+            <option>Doorbell / knock</option>
+            <option>Visitor arriving</option>
+            <option>Parking the car</option>
+            <option>Other dog</option>
+            <option>Other</option>
+          </select>
+        </label>
       </div>
-      <label>Note
-        <textarea id="triggerNote" placeholder="Example: Doorbell sound on phone. Milo looked up, then went back to mat."></textarea>
+      <label>What happened?
+        <textarea id="triggerNote" placeholder="Example: Parked outside, Milo gave one bark, then settled after scatter treat."></textarea>
       </label>
-      <button id="addTrigger">Add trigger</button>
+      <button id="addTrigger">Add trigger note</button>
       <div id="triggerList" class="log"></div>
     </section>
 
     <section class="card">
       <h3>Daily review</h3>
-      <label>Milo’s mood / what worked / what was too hard
-        <textarea id="dailyNotes" placeholder="Write anything useful for tomorrow..."></textarea>
+      <label>Notes
+        <textarea id="dailyNotes" placeholder="Mood, what worked, what was too hard..."></textarea>
       </label>
       <div class="review-grid">
         <label>Closest dog success distance
-          <input id="dogDistance" placeholder="e.g. 20 metres" />
+          <input id="dogDistance" placeholder="e.g. 15 metres" />
         </label>
         <label>Best doorbell result
-          <input id="doorbellResult" placeholder="e.g. 1 bark then mat" />
+          <input id="doorbellResult" placeholder="e.g. Silent with low volume" />
         </label>
       </div>
       <p id="advice" class="advice"></p>
       <div class="button-row">
-        <button id="prevDay" class="secondary">Previous</button>
-        <button id="saveDay">Save</button>
-        <button id="nextDay">Next</button>
+        <button id="prevDay" class="secondary">← Previous</button>
+        <button id="saveDay">Save Day</button>
+        <button id="nextDay">Next →</button>
       </div>
     </section>
 
     <section class="card">
-      <h3>Progress</h3>
+      <h3>Badges</h3>
+      <div id="badges" class="badges"></div>
+    </section>
+
+    <section class="card">
+      <h3>Progress lab</h3>
       <div id="bars"></div>
-      <button id="exportBtn" class="secondary">Export data</button>
-      <button id="resetBtn" class="danger">Reset app</button>
+      <div class="button-row">
+        <button id="exportBtn" class="secondary">Export backup</button>
+        <button id="resetBtn" class="danger">Reset app</button>
+      </div>
     </section>
   </main>
 
-  <nav class="bottom">
-    <button data-jump="1">Start</button>
-    <button data-jump="15">Door</button>
-    <button data-jump="29">Visitors</button>
-    <button data-jump="43">Car</button>
-    <button data-jump="57">Dogs</button>
-    <button data-jump="85">Final</button>
+  <dialog id="sessionModal">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">Guided mode</p>
+        <h2 id="modalTitle">Session</h2>
+      </div>
+      <button id="closeModal" class="icon-btn">×</button>
+    </div>
+    <p id="modalPurpose" class="modal-purpose"></p>
+    <div class="timer">
+      <span id="timerText">07:00</span>
+      <div class="timer-controls">
+        <button id="timerStart">Start timer</button>
+        <button id="timerReset" class="secondary">Reset</button>
+      </div>
+    </div>
+    <ol id="modalSteps" class="modal-steps"></ol>
+    <button id="completeSession">Mark first session complete</button>
+  </dialog>
+
+  <nav class="tabbar">
+    <button data-jump="1">🏠<span>Start</span></button>
+    <button data-jump="15">🔔<span>Door</span></button>
+    <button data-jump="29">👋<span>Guests</span></button>
+    <button data-jump="43">🚗<span>Car</span></button>
+    <button data-jump="57">🐕<span>Dogs</span></button>
+    <button data-jump="85">🏆<span>Final</span></button>
   </nav>
 
   <script src="programme.js"></script>

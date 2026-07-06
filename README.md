@@ -1,25 +1,24 @@
-# Milo Calm 90
+# Milo Trainer Pro v2
 
-A phone-friendly 90-day dog training tracker for Milo.
+A polished iPhone-friendly PWA for Milo’s 90-day calm training programme.
 
-## How to use
+## New in v2
+- App-style home screen
+- Guided “Start Session” mode
+- Built-in 7-minute timer
+- Badges and achievements
+- AI-style coach logic
+- Quick trigger buttons
+- Progress lab
+- Existing v1 data migration where possible
 
-1. Unzip the folder.
-2. Open `index.html` in a browser.
-3. Tick each daily task, add trigger notes, and save.
-4. On iPhone, you can host it online later and add it to your Home Screen like an app.
+## Update your GitHub app
+Replace the files in your GitHub repository with these files:
+- index.html
+- styles.css
+- app.js
+- programme.js
+- manifest.json
+- sw.js
 
-## What it tracks
-
-- 90-day calm training programme
-- Doorbell / knock barking
-- Visitor arrival calm
-- Parking the car barking
-- Other dog reactivity
-- Daily notes
-- Completion percentage
-- Streak
-- Calm score
-- Exportable JSON progress file
-
-Data is saved locally in your browser on that device.
+Then commit changes. GitHub Pages will update automatically.

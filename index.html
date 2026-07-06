@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#11231e">
+  <title>Milo Trainer Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css?v=clean4">
+</head>
+<body>
+  <div id="toast"></div>
+
+  <header class="top">
+    <p>Milo Trainer Pro</p>
+    <h1 id="greeting">Good evening, Kasper</h1>
+  </header>
+
+  <main>
+    <section class="hero card">
+      <div>
+        <span id="phase" class="pill"></span>
+        <h2 id="dayTitle">Day 1 / 90</h2>
+        <p id="target"></p>
+        <div class="buttons">
+          <button id="startSession">Start session</button>
+          <button id="repeatDay" class="ghost">Repeat</button>
+        </div>
+      </div>
+      <div class="circle"><span id="todayPercent">0%</span><small>today</small></div>
+    </section>
+
+    <section class="stats">
+      <div><strong id="streak">0</strong><span>streak</span></div>
+      <div><strong id="overall">0%</strong><span>total</span></div>
+      <div><strong id="calmScore">—</strong><span>calm</span></div>
+      <div><strong id="badgeCount">0</strong><span>badges</span></div>
+    </section>
+
+    <section class="card coach">
+      <h3>Coach</h3>
+      <p id="coachAdvice"></p>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h3>Today’s training</h3>
+        <button id="jumpToday" class="ghost small">Next open</button>
+      </div>
+      <div id="sessions"></div>
+    </section>
+
+    <section class="card">
+      <h3>Trigger log</h3>
+      <div class="quick">
+        <button data-trigger="Doorbell / knock">🔔<span>Door</span></button>
+        <button data-trigger="Visitor arriving">👋<span>Visitor</span></button>
+        <button data-trigger="Parking the car">🚗<span>Parking</span></button>
+        <button data-trigger="Other dog">🐕<span>Dog</span></button>
+      </div>
+
+      <label>Trigger
+        <select id="triggerType">
+          <option>Doorbell / knock</option>
+          <option>Visitor arriving</option>
+          <option>Parking the car</option>
+          <option>Other dog</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>Barking intensity
+        <select id="intensity">
+          <option value="0">0 - silent</option>
+          <option value="1">1 - tiny grumble</option>
+          <option value="2">2 - one/two barks</option>
+          <option value="3">3 - several barks</option>
+          <option value="4">4 - hard to interrupt</option>
+          <option value="5">5 - full meltdown</option>
+        </select>
+      </label>
+
+      <label>Note
+        <textarea id="triggerNote" placeholder="What happened? What helped Milo calm down?"></textarea>
+      </label>
+      <button id="addTrigger">Log trigger</button>
+      <div id="triggerList" class="log"></div>
+    </section>
+
+    <section class="card">
+      <h3>Daily review</h3>
+      <label>Notes
+        <textarea id="dailyNotes" placeholder="Mood, wins, what was too hard..."></textarea>
+      </label>
+      <label>Closest dog success distance
+        <input id="dogDistance" placeholder="e.g. 20 metres">
+      </label>
+      <label>Best doorbell result
+        <input id="doorbellResult" placeholder="e.g. silent at low volume">
+      </label>
+      <p id="advice" class="advice"></p>
+      <div class="buttons three">
+        <button id="prevDay" class="ghost">Previous</button>
+        <button id="saveDay">Save</button>
+        <button id="nextDay">Next</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Badges</h3>
+      <div id="badges" class="badges"></div>
+    </section>
+
+    <section class="card">
+      <h3>Progress</h3>
+      <div id="bars"></div>
+      <div class="buttons">
+        <button id="exportBtn" class="ghost">Export</button>
+        <button id="resetBtn" class="danger">Reset</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="sessionModal">
+    <div class="modal-head">
+      <div>
+        <p>Guided mode</p>
+        <h2 id="modalTitle"></h2>
+      </div>
+      <button id="closeModal" class="round">×</button>
+    </div>
+    <p id="modalPurpose" class="modal-purpose"></p>
+    <div class="timer">
+      <strong id="timerText">07:00</strong>
+      <div class="buttons center">
+        <button id="timerStart">Start timer</button>
+        <button id="timerReset" class="ghost">Reset</button>
+      </div>
+    </div>
+    <ol id="modalSteps"></ol>
+    <button id="completeSession" class="full">Mark session complete</button>
+  </dialog>
+
+  <nav class="tabs">
+    <button data-jump="1">🏠<span>Start</span></button>
+    <button data-jump="15">🔔<span>Door</span></button>
+    <button data-jump="29">👋<span>Guests</span></button>
+    <button data-jump="43">🚗<span>Car</span></button>
+    <button data-jump="57">🐕<span>Dogs</span></button>
+    <button data-jump="85">🏆<span>Final</span></button>
+  </nav>
+
+  <script src="programme.js?v=clean4"></script>
+  <script src="app.js?v=clean4"></script>
+</body>
+</html>

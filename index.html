@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#285C4D" />
+  <title>Milo Calm 90</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Milo Calm 90</p>
+      <h1>Training Tracker</h1>
+    </div>
+    <button id="installBtn" class="secondary hidden">Install</button>
+  </header>
+
+  <main>
+    <section class="card hero">
+      <div>
+        <p id="phase" class="pill"></p>
+        <h2 id="dayTitle"></h2>
+        <p id="target"></p>
+      </div>
+      <div class="ring">
+        <span id="todayPercent">0%</span>
+        <small>done</small>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><strong id="streak">0</strong><span>day streak</span></div>
+      <div class="stat"><strong id="overall">0%</strong><span>overall</span></div>
+      <div class="stat"><strong id="calmScore">—</strong><span>calm score</span></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h3>Today’s high-end guide</h3>
+        <button id="jumpToday" class="secondary">Today</button>
+      </div>
+      <div id="sessions"></div>
+    </section>
+
+    <section class="card">
+      <h3>Success criteria</h3>
+      <ul id="criteria"></ul>
+    </section>
+
+    <section class="card">
+      <h3>Trigger tracker</h3>
+      <div class="grid">
+        <label>Trigger
+          <select id="triggerType">
+            <option>Doorbell / knock</option>
+            <option>Visitor arriving</option>
+            <option>Parking the car</option>
+            <option>Other dog</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Barking intensity
+          <select id="intensity">
+            <option value="0">0 - silent</option>
+            <option value="1">1 - tiny grumble</option>
+            <option value="2">2 - one/two barks</option>
+            <option value="3">3 - several barks</option>
+            <option value="4">4 - hard to interrupt</option>
+            <option value="5">5 - full meltdown</option>
+          </select>
+        </label>
+      </div>
+      <label>Note
+        <textarea id="triggerNote" placeholder="Example: Doorbell sound on phone. Milo looked up, then went back to mat."></textarea>
+      </label>
+      <button id="addTrigger">Add trigger</button>
+      <div id="triggerList" class="log"></div>
+    </section>
+
+    <section class="card">
+      <h3>Daily review</h3>
+      <label>Milo’s mood / what worked / what was too hard
+        <textarea id="dailyNotes" placeholder="Write anything useful for tomorrow..."></textarea>
+      </label>
+      <div class="review-grid">
+        <label>Closest dog success distance
+          <input id="dogDistance" placeholder="e.g. 20 metres" />
+        </label>
+        <label>Best doorbell result
+          <input id="doorbellResult" placeholder="e.g. 1 bark then mat" />
+        </label>
+      </div>
+      <p id="advice" class="advice"></p>
+      <div class="button-row">
+        <button id="prevDay" class="secondary">Previous</button>
+        <button id="saveDay">Save</button>
+        <button id="nextDay">Next</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Progress</h3>
+      <div id="bars"></div>
+      <button id="exportBtn" class="secondary">Export data</button>
+      <button id="resetBtn" class="danger">Reset app</button>
+    </section>
+  </main>
+
+  <nav class="bottom">
+    <button data-jump="1">Start</button>
+    <button data-jump="15">Door</button>
+    <button data-jump="29">Visitors</button>
+    <button data-jump="43">Car</button>
+    <button data-jump="57">Dogs</button>
+    <button data-jump="85">Final</button>
+  </nav>
+
+  <script src="programme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

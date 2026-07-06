@@ -1,9 +1,0 @@
-{
-  "name": "Milo Trainer Pro v3",
-  "short_name": "Milo Pro",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#f4eadc",
-  "theme_color": "#111f1b",
-  "icons": []
-}
